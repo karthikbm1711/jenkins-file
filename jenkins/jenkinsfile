@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { lable 'lable1' }
     stages {
         stage('BUILD') {
             steps {
