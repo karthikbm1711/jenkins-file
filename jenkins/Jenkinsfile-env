@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         BRANCH = 'main'
-        GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
+        GIT_REPO = 'https://github.com/jaintpharsha/devops-june-2022.git'
     }
 
     stages {
