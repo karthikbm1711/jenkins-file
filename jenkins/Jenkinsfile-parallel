@@ -1,16 +1,15 @@
 pipeline {
      agent any
        environment {
-        BRANCH = git'master'
-        GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
+        BRANCH = 'master'
+        GIT_REPO = 'https://github.com/Halesh1807/batch2-assignment.git'
     }
        stages {
-       stage('2') {
-       when {
+        when {
                 branch 'master'
                 beforeAgent true
             }
-          }
+          
           stage('TESTING') {
             parallel {
                    stage('TESTING1') {
@@ -20,26 +19,27 @@ pipeline {
                         {						  
                           sh 'echo "This is a TESTING1 stage"'
                           sh 'sleep 3'
-			}
-			else {
-		        error("Build failed because of this and that")
-                             }
-                     }
+						}
+						else {
+						   error("Build failed because of this and that")
+                       }
+                    }
                   }
-		 }
-		       stage('TESTING2') {
+				  }
+						stage('TESTING2') {
+                     
                             steps {
                                  script {
-				    if(env.BRANCH == 'master') 
+								 if(env.BRANCH == 'master') 
                                  {						  
                                       sh 'echo "This is a TESTING1 stage"'
                                       sh 'sleep 3'
-				  }
-				 else {
-				error("Build failed because of this and that")
+						         }
+						           else {
+						             error("Build failed because of this and that")
                        }
                        
-			  }
+						    }
                         }
                 }
            }     
