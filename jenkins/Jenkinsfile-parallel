@@ -1,7 +1,7 @@
 pipeline {
      agent any
        environment {
-        BRANCH = 'master'
+        BRANCH = ${GIT_BRANCH}
         GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
     }
        stages {
