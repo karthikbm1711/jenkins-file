@@ -3,25 +3,9 @@ pipeline {
 	   parameters { 
 	        choice(name: 'STAGE', choices: [ 'main','master' ] , description: 'to test parallel stage')
 	    }
-        stages {
-         stage('BUILD') {
-            steps {
-                sh '''
-                    #!/bin/bash 
-                    pwd 
-                    ls
-                    echo "This is a BUILD stage"
-                    sleep 3
-                '''  
-            }
-        }
-        stage('DEPLOY') {
-            steps {
-                echo "This is a DEPLOY stage"
-                sh 'sleep 3'
-            }
-        }
-        stage('TESTING') {
+       stages {
+          
+          stage('TESTING') {
             parallel {
 			  steps { 
 			      script {
@@ -47,6 +31,5 @@ pipeline {
                         }
                 }
            }     
-        }    
+        }   
     }
-}
