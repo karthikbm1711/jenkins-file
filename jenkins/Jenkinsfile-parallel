@@ -1,27 +1,28 @@
 pipeline {
      agent any
-	   parameters { 
-	        choice(name: 'STAGE', choices: [ 'main','master' ] , description: 'to test parallel stage')
-	    }
+       environment {
+        BRANCH = 'master'
+        GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
+    }
        stages {
           
           stage('TESTING') {
             parallel {
-			  steps { 
-			      script {
-				     if(param.STAGE == 'master')
-				    }
                    stage('TESTING1') {
                       steps {
-				      
-                           sh 'echo "This is a TESTING1 stage"'
+                       script {
+                          if(env.BRANCH == 'master')    
+                          sh 'echo "This is a TESTING1 stage"'
                           sh 'sleep 3'
 						}
                     
                     }
+                  }
 						stage('TESTING2') {
                      
                             steps {
+                                 script {
+                                   if(env.BRANCH == 'master')    
 					
                               sh '''
                                  echo "This is a TESTING2 stage"
@@ -31,5 +32,6 @@ pipeline {
                         }
                 }
            }     
-        }   
+        }
     }
+}
