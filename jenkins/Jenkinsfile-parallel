@@ -1,7 +1,7 @@
 pipeline {
      agent any
        environment {
-        BRANCH = $(echo $GIT_BRANCH   | sed -e "s|origin/||g")
+        BRANCH = "$GIT_BRANCH"
 	GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
     }
        stages {
@@ -11,7 +11,7 @@ pipeline {
                    stage('TESTING1') {
                       steps {
                        script {
-                          if(env.BRANCH == 'master') 
+                          if(env.BRANCH == 'origin/master') 
                         {						  
                           sh 'echo "This is a TESTING1 stage"'
                           sh 'sleep 3'
@@ -25,7 +25,7 @@ pipeline {
 		       stage('TESTING2') {
                             steps {
                                  script {
-				    if(env.BRANCH == 'master') 
+				    if(env.BRANCH == 'origin/master') 
                                  {						  
                                       sh 'echo "This is a TESTING1 stage"'
                                       sh 'sleep 3'
