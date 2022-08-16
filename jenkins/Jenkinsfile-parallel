@@ -1,11 +1,10 @@
 pipeline {
-     agent none 
+     agent any
 	   parameters { 
 	        choice(name: 'STAGE', choices: [ 'main','master' ] , description: 'to test parallel stage')
 	    }
         stages {
          stage('BUILD') {
-            agent any
             steps {
                 sh '''
                     #!/bin/bash 
@@ -17,7 +16,6 @@ pipeline {
             }
         }
         stage('DEPLOY') {
-            agent { label 'slave1' } 
             steps {
                 echo "This is a DEPLOY stage"
                 sh 'sleep 3'
