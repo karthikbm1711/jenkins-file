@@ -1,15 +1,12 @@
 pipeline {
      agent any
        environment {
-        BRANCH = 'master'
-        GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
+        BRANCH = $(echo $GIT_BRANCH   | sed -e "s|origin/||g")
+	GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
     }
        stages {
           
           stage('TESTING') {
-	  when {
-                branch 'master'
-            }
             parallel {
                    stage('TESTING1') {
                       steps {
