@@ -1,7 +1,10 @@
 pipeline {
-    agent none 
-    stages {
-        stage('BUILD') {
+     agent none 
+	   parameters { 
+	        choice(name: 'STAGE', choices: [ 'main','master' ] , description: 'to test parallel stage')
+	    }
+        stages {
+         stage('BUILD') {
             agent any
             steps {
                 sh '''
@@ -9,7 +12,7 @@ pipeline {
                     pwd 
                     ls
                     echo "This is a BUILD stage"
-                    sleep 5
+                    sleep 3
                 '''  
             }
         }
@@ -22,23 +25,30 @@ pipeline {
         }
         stage('TESTING') {
             parallel {
-                stage('TESTING1') {
-                    agent { label 'slave2' } 
-                    steps {
-                        sh 'echo "This is a TESTING1 stage"'
-                        sh 'sleep 3'
+			  steps { 
+			      script {
+				     if(param.STAGE == 'master')
+				    }
+                   stage('TESTING1') {
+                      steps {
+				      
+                           sh 'echo "This is a TESTING1 stage"'
+                          sh 'sleep 3'
+						}
+                    
                     }
-                }
-                 stage('TESTING2') {
-                    agent { label 'master' } 
-                    steps {
-                        sh '''
-                            echo "This is a TESTING2 stage"
-                            sleep 3
-                        '''
-                    }
+						stage('TESTING2') {
+                     
+                            steps {
+					
+                              sh '''
+                                 echo "This is a TESTING2 stage"
+                                  sleep 3
+                               '''
+						    }
+                        }
                 }
            }     
         }    
     }
-}             
+}
