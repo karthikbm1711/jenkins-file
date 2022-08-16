@@ -5,6 +5,10 @@ pipeline {
         GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
     }
        stages {
+       when {
+                branch 'master'
+                beforeAgent true
+            }
           
           stage('TESTING') {
             parallel {
