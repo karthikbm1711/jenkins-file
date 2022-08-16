@@ -1,7 +1,7 @@
 pipeline {
      agent any
        environment {
-        BRANCH = 'main'
+        BRANCH = "${GIT_BRANCH}"
         GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
     }
        stages {
@@ -11,24 +11,30 @@ pipeline {
                    stage('TESTING1') {
                       steps {
                        script {
-                          if(env.BRANCH == 'master')    
+                          if(env.BRANCH == 'master') 
+                        {						  
                           sh 'echo "This is a TESTING1 stage"'
                           sh 'sleep 3'
-						}
-                    
-                    }
+			}
+			else {
+		        error("Build failed because of this and that")
+                             }
+                     }
                   }
-						stage('TESTING2') {
-                     
+		 }
+		       stage('TESTING2') {
                             steps {
                                  script {
-                                   if(env.BRANCH == 'master')    
-					
-                              sh '''
-                                 echo "This is a TESTING2 stage"
-                                  sleep 3
-                               '''
-						    }
+				    if(env.BRANCH == 'master') 
+                                 {						  
+                                      sh 'echo "This is a TESTING1 stage"'
+                                      sh 'sleep 3'
+				  }
+				 else {
+				error("Build failed because of this and that")
+                       }
+                       
+			  }
                         }
                 }
            }     
