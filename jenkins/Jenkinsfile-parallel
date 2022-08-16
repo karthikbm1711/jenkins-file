@@ -2,7 +2,7 @@ pipeline {
      agent any
        environment {
         BRANCH = 'master'
-        GIT_REPO = 'https://github.com/Halesh1807/batch2-assignment.git'
+        GIT_REPO = 'https://github.com/karthikbm1711/jenkins-file.git'
     }
        stages {
         when {
