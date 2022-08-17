@@ -1,46 +1,42 @@
+def a_result = "false"
+
 pipeline {
     agent any
 
     stages {
         stage('A') {
             steps {
-                
+               
 					script { 
-					    echo "This is A stage"
-					    
-						
-						
+					    echo "Default Result "
+					    echo a_result
+						echo "Executing A"
+						a_result = "true"
 					}
+				
             }
         }
         stage('B') {
             steps {
                 
                     script { 
-					post {
-                     success {
-                        echo " THIS IS STAGE B"
-                      }
-                    }
-						
-							
+						if ( a_result == "true" ) {
+							echo "Executing B"
 						}
+					
                 }
             }
-        
+        }
         stage('C') {
             steps {
                 
                     script { 
-					post {
-                    failure {
-                        echo "THIS IS STAGE C"
-                           }
-                           }
-						
-							
+						if ( a_result != "true" ) {
+							echo "Executing C"
 						}
-					}
+					
+                }
             }
         }
     }
+}
