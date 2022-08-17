@@ -2,43 +2,40 @@ def a_result = "false"
 
 pipeline {
     agent any
-
     stages {
         stage('A') {
             steps {
-               
-					script { 
+                script { 
 					    echo "Default Result "
 					    echo a_result
 						echo "Executing A"
 						a_result = "true"
 					}
-				
-            }
-        }
+				}
+				}
         stage('B') {
             steps {
-                
-                    script { 
-						if ( a_result == "true" ) {
-							echo "Executing B"
+               script { 
+			      if ( a_result == "true" ) {
+				  echo "Executing B"
 						}
-					
-                }
+					}
+                
             }
         }
         stage('C') {
             steps {
-                
+               
                     script { 
 						if ( a_result != "true" ) {
-							error("this is failed")
-							}
-							else {
+						   error("this is failed")
+						  }
+						  else {
 							echo "Executing C"
 						}
+						}
 					}
-                }
+                
             }
         }
     }
