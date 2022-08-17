@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('A') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'STABLE') {
 					script { 
 					    echo "Default Result "
 					    echo a_result
