@@ -17,8 +17,12 @@ pipeline {
             steps {
                 
                     script { 
-						if ( BUILD_COMPLETE == "true" ) 
-							echo " THIS IS STAGE B"
+					post {
+                     success {
+                        echo " THIS IS STAGE B"
+                      }
+                    }
+						
 							
 						}
                 }
@@ -28,8 +32,13 @@ pipeline {
             steps {
                 
                     script { 
-						while ( BUILD_COMPLETE != "true" ) 
-							echo "THIS IS STAGE C"
+					post {
+                    failure {
+                        echo "THIS IS STAGE C"
+                           }
+                           }
+						
+							
 						}
 					}
             }
