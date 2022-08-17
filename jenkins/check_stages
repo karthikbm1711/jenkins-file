@@ -9,7 +9,7 @@ pipeline {
 					    echo "Default Result "
 					    echo a_result
 						echo "Executing A"
-						a_result = "true"
+						a_result = "false"
 					}
 				}
 				}
