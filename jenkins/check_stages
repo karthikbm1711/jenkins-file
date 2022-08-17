@@ -6,10 +6,10 @@ pipeline {
             steps {
                 
 					script { 
-					    echo "Default Result "
-					    echo a_result
-						echo "Executing A"
-						a_result = "true"
+					    echo "This is A stage"
+					    
+						
+						BUILD_COMPLETE = "true"
 					}
 				
             }
@@ -18,23 +18,22 @@ pipeline {
             steps {
                 
                     script { 
-						if ( a_result == "true" ) {
-							echo "Executing B"
+						while ( BUILD_COMPLETE == "true" ) 
+							echo " THIS IS STAGE B"
 						}
 					
                 }
             }
-        }
+        
         stage('C') {
             steps {
                 
                     script { 
-						if ( a_result != "true" ) {
-							echo "Executing C"
+						while ( BUILD_COMPLETE != "true" ) 
+							echo "THIS IS STAGE C"
 						}
 					}
                 
             }
         }
     }
-}
