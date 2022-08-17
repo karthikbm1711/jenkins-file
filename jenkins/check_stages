@@ -4,36 +4,36 @@ pipeline {
     stages {
         stage('A') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'STABLE') {
+                
 					script { 
 					    echo "Default Result "
 					    echo a_result
 						echo "Executing A"
 						a_result = "true"
 					}
-				}
+				
             }
         }
         stage('B') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                
                     script { 
 						if ( a_result == "true" ) {
 							echo "Executing B"
 						}
-					}
+					
                 }
             }
         }
         stage('C') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                
                     script { 
 						if ( a_result != "true" ) {
 							echo "Executing C"
 						}
 					}
-                }
+                
             }
         }
     }
