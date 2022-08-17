@@ -18,9 +18,9 @@ pipeline {
             steps {
                 
                     script { 
-						while ( BUILD_COMPLETE == "true" ) 
+						if ( BUILD_COMPLETE == "true" ) 
 							echo " THIS IS STAGE B"
-							done
+							
 						}
 					
                 }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 
                     script { 
-						while ( BUILD_COMPLETE != "true" ) 
+						if ( BUILD_COMPLETE != "true" ) 
 							echo "THIS IS STAGE C"
 						}
 					}
