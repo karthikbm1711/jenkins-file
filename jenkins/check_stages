@@ -4,15 +4,13 @@ pipeline {
     stages {
         stage('A') {
             steps {
-                      
-					script { 
+                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')  {
+					  script { 
 					    echo "This is A stage"
-					    
-					    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
-						
-						BUILD_COMPLETE = "true"
+					    error("Build failed because of this and that")
+			          BUILD_COMPLETE = "true" 
+					  }
 					}
-				
             }
         }
         stage('B') {
@@ -23,7 +21,6 @@ pipeline {
 							echo " THIS IS STAGE B"
 							
 						}
-					
                 }
             }
         
@@ -35,7 +32,6 @@ pipeline {
 							echo "THIS IS STAGE C"
 						}
 					}
-                
             }
         }
     }
