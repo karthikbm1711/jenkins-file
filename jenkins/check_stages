@@ -1,4 +1,4 @@
-def a_result = "false"
+def a_result = "true"
 
 pipeline {
     agent any
@@ -9,7 +9,8 @@ pipeline {
 					    echo "Default Result "
 					    echo a_result
 						echo "Executing A"
-						a_result = "false"
+						a_result = "true"
+						
 					}
 				}
 				}
