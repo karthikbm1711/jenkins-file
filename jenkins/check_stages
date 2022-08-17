@@ -8,7 +8,7 @@ pipeline {
 					script { 
 					    echo "This is A stage"
 					    
-						
+						error("Build failed because of this and that")
 						BUILD_COMPLETE = "true"
 					}
             }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 
                     script { 
-						if ( BUILD_COMPLETE != "true" ) 
+						while ( BUILD_COMPLETE != "true" ) 
 							echo "THIS IS STAGE C"
 						}
 					}
