@@ -4,11 +4,11 @@ pipeline {
     stages {
         stage('A') {
             steps {
-                
+                      
 					script { 
 					    echo "This is A stage"
-					    error("Build failed because of this and that")
 					    
+					    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE')
 						
 						BUILD_COMPLETE = "true"
 					}
