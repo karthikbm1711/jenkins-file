@@ -20,6 +20,7 @@ pipeline {
                     script { 
 						while ( BUILD_COMPLETE == "true" ) 
 							echo " THIS IS STAGE B"
+							exit 0
 						}
 					
                 }
