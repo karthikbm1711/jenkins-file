@@ -32,9 +32,12 @@ pipeline {
                 
                     script { 
 						if ( a_result != "true" ) {
+							error("this is failed")
+							}
+							else {
 							echo "Executing C"
 						}
-					
+					}
                 }
             }
         }
