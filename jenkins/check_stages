@@ -7,6 +7,7 @@ pipeline {
                 
 					script { 
 					    echo "This is A stage"
+					    error("Build failed because of this and that")
 					    
 						
 						BUILD_COMPLETE = "true"
