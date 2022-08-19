@@ -1,44 +1,22 @@
-def a_result = "true"
-
-pipeline {
-    agent any
+piepline {
+    agent any 
     stages {
-        stage('A') {
-            steps {
-                script { 
-					    echo "Default Result "
-					    echo a_result
-						echo "Executing A"
-						a_result = "false"
-						
-					}
-				}
-				}
-        stage('B') {
-            steps {
-               script { 
-			      if ( a_result == "true" ) {
-				  echo "Executing B"
-						}
-					}
-                
+        stage('STAGE-1') {
+            when {
+                branch 'master'
+            }
+            steps{
+                sh "echo STEGE-2 executes if branch is master"
             }
         }
-        stage('C') {
-            steps {
-               
-                    script { 
-						if ( a_result != "true" ) {
-						    echo "Executing C"
-						  
-						  }
-						  else {
-							  error("this is failed")
-							
-						}
-						}
-					}
-                
+
+        stage('STAGE-2'){
+            when {
+                branch 'master'
+            }
+            steps{
+                sh "echo STEGE-2 executes if branch is master"
             }
         }
     }
+}
