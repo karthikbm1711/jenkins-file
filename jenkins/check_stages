@@ -20,9 +20,10 @@ pipeline {
             }    
             steps{
                 print "EXECUTING: Stage B STAGE_A_RESULT: ${stage_result}"
+		step {
 				if ('currentResult == FAILURE')
 				exit 1
-				
+			}	
             }    
         }
 		  
