@@ -5,21 +5,30 @@ pipeline {
 	         parallel {		 
                 stage('A') {
                  steps{
-                    sh 'echo"Stage A"'
+                    sh '''
+		    echo"Stage A"
+		    sleep 5
+		    '''
                   }
                 }    
          
 
                 stage('B'){
                   steps {
-             	     sh 'echo"Stage B"'		
+             	     sh '''
+		     echo"Stage B"
+		     sleep 5
+		     '''
                    }
                 }
 		      }
 		    }
             stage('C'){ 
                steps {
-			      sh 'echo"Stage c"'
+			      sh '''
+			      echo"Stage c"
+			      sleep 5
+			      '''
                 }
 		    }
     }
