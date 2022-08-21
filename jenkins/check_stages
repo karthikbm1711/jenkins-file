@@ -1,27 +1,28 @@
+def boolean stage_result = false
 pipeline {
-    agent any 
+      agent any 
       stages {
 	      stage('parallel') {
 	         parallel {		 
-                stage('A') {
-                 steps{
-                    sh '''
-		    echo "Stage A"
-		    sleep 5
-		    '''
-                  }
-                }    
-         
-
-                stage('B'){
-                  steps {
-             	     sh '''
-		     echo "Stage B"
-		     sleep 5
-		     '''
-                   }
-                }
-		      }
+                  stage('A') {
+                      steps{
+                          sh '''
+		                   echo "Stage A"
+		                   sleep 5
+		                   '''
+					      script { stage_result = true }
+                        }
+                    }    
+                   stage('B'){
+                     steps {
+             	          sh '''
+		                  echo "Stage B"
+		                  sleep 5
+		                     '''
+			             script { stage_result = true }
+                        }
+                    }
+		        }
 		    }
             stage('C'){ 
                steps {
@@ -31,5 +32,5 @@ pipeline {
 			      '''
                 }
 		    }
+        }
     }
-}
