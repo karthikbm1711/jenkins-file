@@ -24,7 +24,7 @@ pipeline {
 		                  echo "Stage B"
 		                  sleep 5
 		                     '''
-			             script { stage_result = true }
+			             script { stage_result = false }
                         }
                     }
 		        }
