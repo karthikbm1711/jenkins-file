@@ -1,4 +1,4 @@
-def boolean stage_result = true
+def boolean stage_result = tr
 pipeline {
     agent any 
     stages {
@@ -6,11 +6,11 @@ pipeline {
 	  parallel {
 	    stage('A') {
             steps{
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+               
                     print "Stage A"
                     sh "exit 1"
                     script { stage_result = false }
-                }
+                
             }    
         }
 
@@ -21,7 +21,7 @@ pipeline {
             steps{
                 print "EXECUTING: Stage B STAGE_A_RESULT: ${stage_result}"
 				if {currentResult == FAILURE}
-				catchError(buildResult: 'FAILURE', stageResult: 'FAILURE')
+				exit 1
 				
             }    
         }
