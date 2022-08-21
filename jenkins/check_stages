@@ -8,15 +8,13 @@ pipeline {
               }  
 	         parallel {		 
                   stage('A') {
-                      steps{
-					      catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                      steps {
                           sh '''
 		                   echo "Stage A"
 		                   sleep 5
 		                   '''
 					      script { stage_result = true }
-                        }
-                    }  
+                        }  
                     }					
                    stage('B'){
                      steps {
@@ -24,7 +22,7 @@ pipeline {
 		                  echo "Stage B"
 		                  sleep 5
 		                     '''
-			             script { stage_result = false }
+			             script { stage_result = true }
                         }
                     }
 		        }
