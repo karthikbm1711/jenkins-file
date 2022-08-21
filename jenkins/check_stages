@@ -3,6 +3,9 @@ pipeline {
       agent any 
       stages {
 	      stage('parallel') {
+		      when { 
+                expression{ stage_result == true }
+              }  
 	         parallel {		 
                   stage('A') {
                       steps{
