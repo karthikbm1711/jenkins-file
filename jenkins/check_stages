@@ -6,20 +6,22 @@ pipeline {
 	         parallel {		 
                   stage('A') {
                       steps{
+					      catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                           sh '''
 		                   echo "Stage A"
 		                   sleep 5
 		                   '''
-					      script { stage_result = false }
+					      script { stage_result = true }
                         }
-                    }    
+                    }  
+                    }					
                    stage('B'){
                      steps {
              	          sh '''
 		                  echo "Stage B"
 		                  sleep 5
 		                     '''
-			             script { stage_result = false }
+			             script { stage_result = true }
                         }
                     }
 		        }
