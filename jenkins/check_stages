@@ -10,7 +10,7 @@ pipeline {
 		                   echo "Stage A"
 		                   sleep 5
 		                   '''
-					      script { stage_result = true }
+					      script { stage_result = false }
                         }
                     }    
                    stage('B'){
