@@ -6,7 +6,7 @@ pipeline {
                 stage('A') {
                  steps{
                     sh '''
-		    echo"Stage A"
+		    echo "Stage A"
 		    sleep 5
 		    '''
                   }
@@ -16,7 +16,7 @@ pipeline {
                 stage('B'){
                   steps {
              	     sh '''
-		     echo"Stage B"
+		     echo "Stage B"
 		     sleep 5
 		     '''
                    }
@@ -26,7 +26,7 @@ pipeline {
             stage('C'){ 
                steps {
 			      sh '''
-			      echo"Stage c"
+			      echo "Stage c"
 			      sleep 5
 			      '''
                 }
